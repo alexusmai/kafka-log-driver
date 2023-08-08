@@ -2,8 +2,8 @@
 
 ## Requirements:
 
-- PHP 8.1
-- Laravel 9
+- PHP 8.1, 8.2
+- Laravel 9, 10
 - rdkafka php extension v.6
 
 ```bash
@@ -22,6 +22,12 @@ You can install the package via composer:
 
 ```bash
 composer require alexusmai/kafka-log-driver
+```
+
+For Laravel 9
+
+```bash
+composer require alexusmai/kafka-log-driver:1.0
 ```
 
 You can publish the config file with:

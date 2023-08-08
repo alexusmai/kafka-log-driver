@@ -5,7 +5,8 @@ namespace Alexusmai\KafkaLogDriver\Handler;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\AbstractProcessingHandler;
-use Monolog\Logger;
+use Monolog\Level;
+use Monolog\LogRecord;
 use RdKafka\Producer;
 use RdKafka\ProducerTopic;
 
@@ -20,7 +21,7 @@ class KafkaHandler extends AbstractProcessingHandler
      * @param $level
      * @param  bool  $bubble
      */
-    public function __construct(Producer $producer, $topicName, $level = Logger::DEBUG, bool $bubble = true)
+    public function __construct(Producer $producer, $topicName, $level = Level::Debug, bool $bubble = true)
     {
         parent::__construct($level, $bubble);
 
@@ -29,11 +30,11 @@ class KafkaHandler extends AbstractProcessingHandler
     }
 
     /**
-     * @param  array  $record
+     * @param  LogRecord  $record
      *
      * @return void
      */
-    protected function write(array $record): void
+    protected function write(LogRecord $record): void
     {
         $this->topic->produce(RD_KAFKA_PARTITION_UA, 0, $record['formatted']);
     }
